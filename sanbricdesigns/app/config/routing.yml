@@ -1,0 +1,3 @@
+sanbric_main:
+    resource: "@SanbricMainBundle/Resources/config/routing.yml"
+    prefix:   /
