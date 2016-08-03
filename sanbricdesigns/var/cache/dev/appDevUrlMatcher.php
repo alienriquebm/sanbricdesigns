@@ -100,43 +100,257 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // sanbric_main_homepage
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'sanbric_main_homepage');
+        if (0 === strpos($pathinfo, '/api')) {
+            // sanbric_main_homepage
+            if (rtrim($pathinfo, '/') === '/api') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'sanbric_main_homepage');
+                }
+
+                return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\DefaultController::indexAction',  '_route' => 'sanbric_main_homepage',);
             }
 
-            return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\DefaultController::indexAction',  '_route' => 'sanbric_main_homepage',);
+            // sanbric_saludo
+            if ($pathinfo === '/api/Saluda') {
+                return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\DefaultController::SaludaAction',  '_route' => 'sanbric_saludo',);
+            }
+
+            // sanbric_info_inicial
+            if ($pathinfo === '/api/InfoInicial') {
+                return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\DefaultController::InfoInicialAction',  '_route' => 'sanbric_info_inicial',);
+            }
+
+            // sanbric_set_info_inicial
+            if ($pathinfo === '/api/SetInfoInicial') {
+                return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\DefaultController::SetInfoInicialAction',  '_route' => 'sanbric_set_info_inicial',);
+            }
+
+            // _agregar_datos_empresa
+            if ($pathinfo === '/api/AgregarDatosEmpresa') {
+                return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\EmpresaController::AgregarDatosEmpresaAction',  '_route' => '_agregar_datos_empresa',);
+            }
+
+            // _obtener_datos_empresa
+            if ($pathinfo === '/api/ObtenerDatosEmpresa') {
+                return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\EmpresaController::ObtenerDatosEmpresaAction',  '_route' => '_obtener_datos_empresa',);
+            }
+
+            // _actualizar_datos_empresa
+            if ($pathinfo === '/api/ActualizarDatosEmpresa') {
+                return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\EmpresaController::ActualizarDatosEmpresaAction',  '_route' => '_actualizar_datos_empresa',);
+            }
+
         }
 
-        // sanbric_saludo
-        if ($pathinfo === '/Saluda') {
-            return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\DefaultController::SaludaAction',  '_route' => 'sanbric_saludo',);
+        if (0 === strpos($pathinfo, '/log')) {
+            if (0 === strpos($pathinfo, '/login')) {
+                // fos_user_security_login
+                if ($pathinfo === '/login') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_fos_user_security_login;
+                    }
+
+                    return array (  '_controller' => 'FOS\\UserBundle\\Controller\\SecurityController::loginAction',  '_route' => 'fos_user_security_login',);
+                }
+                not_fos_user_security_login:
+
+                // fos_user_security_check
+                if ($pathinfo === '/login_check') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_fos_user_security_check;
+                    }
+
+                    return array (  '_controller' => 'FOS\\UserBundle\\Controller\\SecurityController::checkAction',  '_route' => 'fos_user_security_check',);
+                }
+                not_fos_user_security_check:
+
+            }
+
+            // fos_user_security_logout
+            if ($pathinfo === '/logout') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_fos_user_security_logout;
+                }
+
+                return array (  '_controller' => 'FOS\\UserBundle\\Controller\\SecurityController::logoutAction',  '_route' => 'fos_user_security_logout',);
+            }
+            not_fos_user_security_logout:
+
         }
 
-        // sanbric_info_inicial
-        if ($pathinfo === '/InfoInicial') {
-            return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\DefaultController::InfoInicialAction',  '_route' => 'sanbric_info_inicial',);
+        if (0 === strpos($pathinfo, '/profile')) {
+            // fos_user_profile_show
+            if (rtrim($pathinfo, '/') === '/profile') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_fos_user_profile_show;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'fos_user_profile_show');
+                }
+
+                return array (  '_controller' => 'FOS\\UserBundle\\Controller\\ProfileController::showAction',  '_route' => 'fos_user_profile_show',);
+            }
+            not_fos_user_profile_show:
+
+            // fos_user_profile_edit
+            if ($pathinfo === '/profile/edit') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_fos_user_profile_edit;
+                }
+
+                return array (  '_controller' => 'FOS\\UserBundle\\Controller\\ProfileController::editAction',  '_route' => 'fos_user_profile_edit',);
+            }
+            not_fos_user_profile_edit:
+
         }
 
-        // sanbric_set_info_inicial
-        if ($pathinfo === '/SetInfoInicial') {
-            return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\DefaultController::SetInfoInicialAction',  '_route' => 'sanbric_set_info_inicial',);
+        if (0 === strpos($pathinfo, '/re')) {
+            if (0 === strpos($pathinfo, '/register')) {
+                // fos_user_registration_register
+                if (rtrim($pathinfo, '/') === '/register') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_fos_user_registration_register;
+                    }
+
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'fos_user_registration_register');
+                    }
+
+                    return array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::registerAction',  '_route' => 'fos_user_registration_register',);
+                }
+                not_fos_user_registration_register:
+
+                if (0 === strpos($pathinfo, '/register/c')) {
+                    // fos_user_registration_check_email
+                    if ($pathinfo === '/register/check-email') {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_fos_user_registration_check_email;
+                        }
+
+                        return array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::checkEmailAction',  '_route' => 'fos_user_registration_check_email',);
+                    }
+                    not_fos_user_registration_check_email:
+
+                    if (0 === strpos($pathinfo, '/register/confirm')) {
+                        // fos_user_registration_confirm
+                        if (preg_match('#^/register/confirm/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
+                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                                $allow = array_merge($allow, array('GET', 'HEAD'));
+                                goto not_fos_user_registration_confirm;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_user_registration_confirm')), array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::confirmAction',));
+                        }
+                        not_fos_user_registration_confirm:
+
+                        // fos_user_registration_confirmed
+                        if ($pathinfo === '/register/confirmed') {
+                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                                $allow = array_merge($allow, array('GET', 'HEAD'));
+                                goto not_fos_user_registration_confirmed;
+                            }
+
+                            return array (  '_controller' => 'FOS\\UserBundle\\Controller\\RegistrationController::confirmedAction',  '_route' => 'fos_user_registration_confirmed',);
+                        }
+                        not_fos_user_registration_confirmed:
+
+                    }
+
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/resetting')) {
+                // fos_user_resetting_request
+                if ($pathinfo === '/resetting/request') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_user_resetting_request;
+                    }
+
+                    return array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::requestAction',  '_route' => 'fos_user_resetting_request',);
+                }
+                not_fos_user_resetting_request:
+
+                // fos_user_resetting_send_email
+                if ($pathinfo === '/resetting/send-email') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_fos_user_resetting_send_email;
+                    }
+
+                    return array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::sendEmailAction',  '_route' => 'fos_user_resetting_send_email',);
+                }
+                not_fos_user_resetting_send_email:
+
+                // fos_user_resetting_check_email
+                if ($pathinfo === '/resetting/check-email') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_user_resetting_check_email;
+                    }
+
+                    return array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::checkEmailAction',  '_route' => 'fos_user_resetting_check_email',);
+                }
+                not_fos_user_resetting_check_email:
+
+                // fos_user_resetting_reset
+                if (0 === strpos($pathinfo, '/resetting/reset') && preg_match('#^/resetting/reset/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_fos_user_resetting_reset;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_user_resetting_reset')), array (  '_controller' => 'FOS\\UserBundle\\Controller\\ResettingController::resetAction',));
+                }
+                not_fos_user_resetting_reset:
+
+            }
+
         }
 
-        // _agregar_datos_empresa
-        if ($pathinfo === '/AgregarDatosEmpresa') {
-            return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\EmpresaController::AgregarDatosEmpresaAction',  '_route' => '_agregar_datos_empresa',);
-        }
+        // fos_user_change_password
+        if ($pathinfo === '/profile/change-password') {
+            if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                goto not_fos_user_change_password;
+            }
 
-        // _obtener_datos_empresa
-        if ($pathinfo === '/ObtenerDatosEmpresa') {
-            return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\EmpresaController::ObtenerDatosEmpresaAction',  '_route' => '_obtener_datos_empresa',);
+            return array (  '_controller' => 'FOS\\UserBundle\\Controller\\ChangePasswordController::changePasswordAction',  '_route' => 'fos_user_change_password',);
         }
+        not_fos_user_change_password:
 
-        // _actualizar_datos_empresa
-        if ($pathinfo === '/ActualizarDatosEmpresa') {
-            return array (  '_controller' => 'Sanbric\\MainBundle\\Controller\\EmpresaController::ActualizarDatosEmpresaAction',  '_route' => '_actualizar_datos_empresa',);
+        if (0 === strpos($pathinfo, '/oauth/v2')) {
+            // fos_oauth_server_token
+            if ($pathinfo === '/oauth/v2/token') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_fos_oauth_server_token;
+                }
+
+                return array (  '_controller' => 'fos_oauth_server.controller.token:tokenAction',  '_route' => 'fos_oauth_server_token',);
+            }
+            not_fos_oauth_server_token:
+
+            // fos_oauth_server_authorize
+            if ($pathinfo === '/oauth/v2/auth') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_fos_oauth_server_authorize;
+                }
+
+                return array (  '_controller' => 'FOS\\OAuthServerBundle\\Controller\\AuthorizeController::authorizeAction',  '_route' => 'fos_oauth_server_authorize',);
+            }
+            not_fos_oauth_server_authorize:
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

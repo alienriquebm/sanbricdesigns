@@ -46,6 +46,10 @@ class ComposerStaticInite803091e35cbc3559d8c121e9f46b7aa
         array (
             'Psr\\Cache\\' => 10,
         ),
+        'O' => 
+        array (
+            'OAuth2\\' => 7,
+        ),
         'N' => 
         array (
             'Nelmio\\CorsBundle\\' => 18,
@@ -61,7 +65,9 @@ class ComposerStaticInite803091e35cbc3559d8c121e9f46b7aa
         ),
         'F' => 
         array (
+            'FOS\\UserBundle\\' => 15,
             'FOS\\RestBundle\\' => 15,
+            'FOS\\OAuthServerBundle\\' => 22,
         ),
         'D' => 
         array (
@@ -150,6 +156,10 @@ class ComposerStaticInite803091e35cbc3559d8c121e9f46b7aa
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
+        'OAuth2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/oauth2-php/lib',
+        ),
         'Nelmio\\CorsBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/nelmio/cors-bundle',
@@ -166,9 +176,17 @@ class ComposerStaticInite803091e35cbc3559d8c121e9f46b7aa
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
         ),
+        'FOS\\UserBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
+        ),
         'FOS\\RestBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofsymfony/rest-bundle',
+        ),
+        'FOS\\OAuthServerBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/oauth-server-bundle',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

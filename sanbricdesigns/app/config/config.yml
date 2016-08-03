@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -83,9 +83,27 @@ fos_rest:
     body_listener: true
     format_listener:
         rules:
-            - { path: '^/', priorities: ['json'], fallback_format: json, prefer_extension: false }
+            - { path: '^/api', priorities: ['json'], fallback_format: json, prefer_extension: false }
+            - { path: '^/', priorities: ['text/html', '*/*'], fallback_format: html, prefer_extension: true }
     param_fetcher_listener: true
     view:
         view_response_listener: 'force'
         formats:
             json: true
+
+# FOSOauth Server Config
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Sanbric\MainBundle\Entity\User
+
+fos_oauth_server:
+    db_driver: orm
+    client_class:        Sanbric\MainBundle\Entity\Client
+    access_token_class:  Sanbric\MainBundle\Entity\AccessToken
+    refresh_token_class: Sanbric\MainBundle\Entity\RefreshToken
+    auth_code_class:     Sanbric\MainBundle\Entity\AuthCode
+    service:
+        options:
+            supported_scopes: read
+        user_provider: fos_user.user_provider.username
