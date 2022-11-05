@@ -1,9 +1,10 @@
-import styled from 'styled-components';
-
-const StyledWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.gray400};
-`;
+import MainHero from '@components/IndexPage/MainHero';
+import Layout from '@components/Layout';
 
 export default function Home() {
-  return <StyledWrapper>Sanbric designs new app</StyledWrapper>;
+  return (
+    <Layout>
+      <MainHero />
+    </Layout>
+  );
 }

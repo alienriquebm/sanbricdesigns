@@ -133,6 +133,24 @@ const reset = css`
   }
 `;
 
+const mainConfig = css`
+  html,
+  body,
+  #__next {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+`;
+
+const bodyBackground = css`
+  body {
+    background: url('assets/images/minibackground.jpg');
+  }
+`;
+
 export default createGlobalStyle`
   ${reset}
+  ${mainConfig}
+  ${bodyBackground}
 `;
