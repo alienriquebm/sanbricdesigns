@@ -6,8 +6,8 @@
     "packages/*"
   ],
   "scripts": {
-    "front:dev": "turbo run dev --filter=@aebm-monorepo/front",
-    "back:dev": "turbo run start --filter=@aebm-monorepo/back",
+    "front:dev": "turbo run dev --filter=@sanbricdesigns-monorepo/front",
+    "back:dev": "turbo run start --filter=@sanbricdesigns-monorepo/back",
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",
