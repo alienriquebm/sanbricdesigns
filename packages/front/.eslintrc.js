@@ -41,13 +41,13 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/restrict-plus-operands': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
-    '@typescript-eslint/no-unsafe-assignment': 'off', // TODO: Turn on when typings are updated
-    '@typescript-eslint/no-unsafe-member-access': 'off', // TODO: Turn on when typings are updated
-    '@typescript-eslint/no-unsafe-call': 'off', // TODO: Turn on when typings are updated
-    '@typescript-eslint/restrict-template-expressions': 'off', // TODO: Turn on when typings are updated
-    '@typescript-eslint/no-unsafe-return': 'off', // TODO: Turn on when typings are updated
-    '@typescript-eslint/no-unsafe-argument': 'off', // TODO: Turn on when typings are updated,
-    "no-param-reassign": "off",
-    "import/no-extraneous-dependencies": "off",
+    '@typescript-eslint/no-unsafe-assignment': 'warn',
+    '@typescript-eslint/no-unsafe-member-access': 'warn',
+    '@typescript-eslint/no-unsafe-call': 'warn',
+    '@typescript-eslint/restrict-template-expressions': 'warn',
+    '@typescript-eslint/no-unsafe-return': 'warn',
+    '@typescript-eslint/no-unsafe-argument': 'warn',
+    'no-param-reassign': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
 };
