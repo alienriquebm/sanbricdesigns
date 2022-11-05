@@ -1,0 +1,23 @@
+node_modules
+.idea/
+.next/
+tsconfig.tsbuildinfo
+.vscode
+
+# tsconfig
+tsconfig.tsbuildinfo
+packages/front/tsconfig.tsbuildinfo
+
+# env
+.env
+
+.DS_Store
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+.turbo
+out
+
+yarn-error.log
