@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
@@ -6,7 +6,7 @@ const StyledWrapper = styled.div`
   width: 100%;
 `;
 
-const Layout = ({ children }: { children: ReactElement }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return <StyledWrapper>{children}</StyledWrapper>;
 };
 
