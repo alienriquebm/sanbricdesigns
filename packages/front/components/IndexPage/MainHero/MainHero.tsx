@@ -142,10 +142,17 @@ const images = [
 ];
 
 const MainHero = () => {
+  const mainWrapperRef = useRef<HTMLDivElement | null>(null);
   const [yScrollPosition, setYScrollPosition] = useState<number | null>(0);
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    setYScrollPosition(scrollPosition);
+    if (
+      mainWrapperRef &&
+      mainWrapperRef.current &&
+      scrollPosition <= mainWrapperRef.current.getBoundingClientRect().height
+    ) {
+      setYScrollPosition(scrollPosition);
+    }
   };
 
   useEffect(() => {
@@ -154,7 +161,7 @@ const MainHero = () => {
   }, []);
 
   return (
-    <MainHeroWrapper>
+    <MainHeroWrapper ref={mainWrapperRef}>
       <StyledTitle>WELCOME TO THE DESIGN FACTORY</StyledTitle>
       <StyledGalleryWrapper yScrollPosition={yScrollPosition}>
         <ImageGallery
