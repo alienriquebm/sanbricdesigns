@@ -162,7 +162,6 @@ const MainHero = () => {
     <MainHeroWrapper ref={mainWrapperRef}>
       <StyledTitle>WELCOME TO THE DESIGN FACTORY</StyledTitle>
       <StyledGalleryWrapper
-        yScrollPosition={yScrollPosition}
         style={{ transform: yScrollPosition && yScrollPosition > 0 ? `translateY(${yScrollPosition / 2}%)` : 'none' }}>
         <ImageGallery
           items={images}
