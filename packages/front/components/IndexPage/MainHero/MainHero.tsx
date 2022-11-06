@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MutableRefObject, RefObject, useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import ImageGallery from 'react-image-gallery';
 import Mountain from '@assets/images/snowym.svg';
@@ -48,7 +48,7 @@ const StyledMountain = styled(Mountain)`
   bottom: 0;
 `;
 
-const StyledGalleryWrapper = styled.div`
+const StyledGalleryWrapper = styled.div<{ yScrollPosition: number | null }>`
   position: absolute;
   width: 100%;
   & img {
@@ -57,6 +57,8 @@ const StyledGalleryWrapper = styled.div`
   top: calc((100vh / 2) - 225px);
   z-index: -1;
   transition: transform 0.1s ease;
+  transform: ${({ yScrollPosition }) =>
+    yScrollPosition && yScrollPosition > 0 ? `translateY(${yScrollPosition / 2}%)` : 'none'};
 `;
 
 const CloudsConfiguration = css`
@@ -140,10 +142,21 @@ const images = [
 ];
 
 const MainHero = () => {
+  const [yScrollPosition, setYScrollPosition] = useState<number | null>(0);
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+    setYScrollPosition(scrollPosition);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <MainHeroWrapper>
       <StyledTitle>WELCOME TO THE DESIGN FACTORY</StyledTitle>
-      <StyledGalleryWrapper>
+      <StyledGalleryWrapper yScrollPosition={yScrollPosition}>
         <ImageGallery
           items={images}
           showNav={false}
