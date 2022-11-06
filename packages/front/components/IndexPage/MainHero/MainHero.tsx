@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styled, { css } from 'styled-components';
 import ImageGallery from 'react-image-gallery';
 import Mountain from '@assets/images/snowym.svg';
@@ -7,6 +7,7 @@ import Clouds2 from '@assets/images/clouds2.png';
 import Clouds3 from '@assets/images/clouds3.png';
 import Clouds4 from '@assets/images/clouds4.png';
 import Image from 'next/image';
+import useScrollPosition from 'hooks/useScrollPosition';
 
 const MainHeroWrapper = styled.div`
   width: 100%;
@@ -39,6 +40,11 @@ const StyledTitle = styled.div`
   font-size: 32px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.primary500};
+  text-transform: uppercase;
+  & span {
+    color: ${({ theme }) => theme.colors.primary500};
+    font-weight: 600;
+  }
 `;
 
 const StyledMountain = styled(Mountain)`
@@ -141,28 +147,19 @@ const images = [
 
 const MainHero = () => {
   const mainWrapperRef = useRef<HTMLDivElement | null>(null);
-  const [yScrollPosition, setYScrollPosition] = useState<number | null>(0);
-  const handleScroll = () => {
-    const scrollPosition = window.scrollY;
-    if (
-      mainWrapperRef &&
-      mainWrapperRef.current &&
-      scrollPosition <= mainWrapperRef.current.getBoundingClientRect().height
-    ) {
-      setYScrollPosition(scrollPosition);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+  const { yScrollPosition } = useScrollPosition();
+  const transformCondition =
+    yScrollPosition &&
+    yScrollPosition > 0 &&
+    mainWrapperRef &&
+    mainWrapperRef.current &&
+    yScrollPosition <= mainWrapperRef.current.getBoundingClientRect().height;
   return (
     <MainHeroWrapper ref={mainWrapperRef}>
-      <StyledTitle>WELCOME TO THE DESIGN FACTORY</StyledTitle>
-      <StyledGalleryWrapper
-        style={{ transform: yScrollPosition && yScrollPosition > 0 ? `translateY(${yScrollPosition / 2}%)` : 'none' }}>
+      <StyledTitle>
+        Welcome to the <span>design factory</span>
+      </StyledTitle>
+      <StyledGalleryWrapper style={{ transform: transformCondition ? `translateY(${yScrollPosition / 2}%)` : 'none' }}>
         <ImageGallery
           items={images}
           showNav={false}
