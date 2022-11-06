@@ -48,7 +48,7 @@ const StyledMountain = styled(Mountain)`
   bottom: 0;
 `;
 
-const StyledGalleryWrapper = styled.div<{ yScrollPosition: number | null }>`
+const StyledGalleryWrapper = styled.div`
   position: absolute;
   width: 100%;
   & img {
@@ -57,8 +57,6 @@ const StyledGalleryWrapper = styled.div<{ yScrollPosition: number | null }>`
   top: calc((100vh / 2) - 225px);
   z-index: -1;
   transition: transform 0.1s ease;
-  transform: ${({ yScrollPosition }) =>
-    yScrollPosition && yScrollPosition > 0 ? `translateY(${yScrollPosition / 2}%)` : 'none'};
 `;
 
 const CloudsConfiguration = css`
@@ -163,7 +161,9 @@ const MainHero = () => {
   return (
     <MainHeroWrapper ref={mainWrapperRef}>
       <StyledTitle>WELCOME TO THE DESIGN FACTORY</StyledTitle>
-      <StyledGalleryWrapper yScrollPosition={yScrollPosition}>
+      <StyledGalleryWrapper
+        yScrollPosition={yScrollPosition}
+        style={{ transform: yScrollPosition && yScrollPosition > 0 ? `translateY(${yScrollPosition / 2}%)` : 'none' }}>
         <ImageGallery
           items={images}
           showNav={false}
