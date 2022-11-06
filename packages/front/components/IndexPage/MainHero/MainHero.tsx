@@ -1,4 +1,4 @@
-import React, { MutableRefObject, RefObject, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import ImageGallery from 'react-image-gallery';
 import Mountain from '@assets/images/snowym.svg';
