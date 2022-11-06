@@ -110,6 +110,10 @@ const StyledCloudStaticImage2 = styled(Image)`
 
 const images = [
   {
+    original: 'assets/images/logo.png',
+    thumbnail: 'assets/images/logo.png',
+  },
+  {
     original: 'assets/images/carousel/1.png',
     thumbnail: 'assets/images/carousel/1.png',
   },
