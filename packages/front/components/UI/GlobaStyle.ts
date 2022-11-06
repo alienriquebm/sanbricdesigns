@@ -1,4 +1,5 @@
 import { createGlobalStyle, css } from 'styled-components';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 const reset = css`
   html,
