@@ -13,7 +13,7 @@ const MainHeroWrapper = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
-
+  overflow-x: hidden;
   @keyframes moveClouds {
     0% {
       transform: translateX(calc(100vw + 100px));
