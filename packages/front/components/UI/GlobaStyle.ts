@@ -1,6 +1,13 @@
 import { createGlobalStyle, css } from 'styled-components';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
+const fontConfig = css`
+  @font-face {
+    font-family: 'MrEaves';
+    src: local('MrEaves'), url('/assets/fonts/MrEavesXLModOT-Book.ttf') format('truetype');
+  }
+`;
+
 const reset = css`
   html,
   body,
@@ -151,6 +158,7 @@ const bodyBackground = css`
 `;
 
 export default createGlobalStyle`
+  ${fontConfig}
   ${reset}
   ${mainConfig}
   ${bodyBackground}

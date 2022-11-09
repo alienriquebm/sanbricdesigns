@@ -1,5 +1,7 @@
 import React from 'react';
+import Navbar from '@components/Navbar';
 import styled from 'styled-components';
+import useIsMainHeroOutside from 'hooks/useIsMainHeroOutside';
 
 const StyledWrapper = styled.div`
   height: 100%;
@@ -7,7 +9,14 @@ const StyledWrapper = styled.div`
 `;
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return <StyledWrapper>{children}</StyledWrapper>;
+  const { isMainHeroOutside } = useIsMainHeroOutside();
+
+  return (
+    <StyledWrapper>
+      {isMainHeroOutside && <Navbar />}
+      {children}
+    </StyledWrapper>
+  );
 };
 
 export default Layout;

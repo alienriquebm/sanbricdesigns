@@ -8,6 +8,7 @@ import Clouds3 from '@assets/images/clouds3.png';
 import Clouds4 from '@assets/images/clouds4.png';
 import Image from 'next/image';
 import useScrollPosition from 'hooks/useScrollPosition';
+import { useMainHeroRef } from 'hooks/useContext';
 
 const MainHeroWrapper = styled.div`
   width: 100%;
@@ -146,20 +147,20 @@ const images = [
 ];
 
 const MainHero = () => {
-  const mainWrapperRef = useRef<HTMLDivElement | null>(null);
+  const { mainHeroRef } = useMainHeroRef();
   const { yScrollPosition } = useScrollPosition();
   const transformCondition =
     yScrollPosition &&
     yScrollPosition > 0 &&
-    mainWrapperRef &&
-    mainWrapperRef.current &&
-    yScrollPosition <= mainWrapperRef.current.getBoundingClientRect().height;
+    mainHeroRef &&
+    mainHeroRef.current &&
+    yScrollPosition <= mainHeroRef.current.getBoundingClientRect().height;
   return (
-    <MainHeroWrapper ref={mainWrapperRef}>
+    <MainHeroWrapper ref={mainHeroRef}>
       <StyledTitle>
         Welcome to the <span>design factory</span>
       </StyledTitle>
-      <StyledGalleryWrapper style={{ transform: transformCondition ? `translateY(${yScrollPosition / 2}%)` : 'none' }}>
+      <StyledGalleryWrapper style={{ transform: transformCondition ? `translateY(${yScrollPosition / 5}%)` : 'none' }}>
         <ImageGallery
           items={images}
           showNav={false}
@@ -181,4 +182,5 @@ const MainHero = () => {
   );
 };
 
+MainHero.displayName = 'MainHero';
 export default MainHero;
