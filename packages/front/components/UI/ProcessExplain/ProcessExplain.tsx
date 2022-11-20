@@ -2,6 +2,7 @@ import React from 'react';
 import { ProcessStep } from 'interfaces';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { Slide } from 'react-awesome-reveal';
 import StepTitle from './StepTitle';
 
 interface InnerProps {
@@ -49,15 +50,17 @@ const ProcessExplain = ({ processSteps }: Props) => {
         const i = index;
         const isEvenNumber = i % 2 === 0;
         return (
-          <StyledStepWrapper key={i}>
-            <StyledTextWrapper isEvenNumber={isEvenNumber}>
-              <StyledStepTitle prefixText={i + 1} isEvenNumber={isEvenNumber}>
-                {step.title}
-              </StyledStepTitle>
-              <StyledDescription isEvenNumber={isEvenNumber}>{step.description}</StyledDescription>
-            </StyledTextWrapper>
-            <StyledImage alt={step.title} src={step.image} isEvenNumber={isEvenNumber} />
-          </StyledStepWrapper>
+          <Slide triggerOnce direction={isEvenNumber ? 'left' : 'right'} key={i}>
+            <StyledStepWrapper>
+              <StyledTextWrapper isEvenNumber={isEvenNumber}>
+                <StyledStepTitle prefixText={i + 1} isEvenNumber={isEvenNumber}>
+                  {step.title}
+                </StyledStepTitle>
+                <StyledDescription isEvenNumber={isEvenNumber}>{step.description}</StyledDescription>
+              </StyledTextWrapper>
+              <StyledImage alt={step.title} src={step.image} isEvenNumber={isEvenNumber} />
+            </StyledStepWrapper>
+          </Slide>
         );
       })}
     </StyledWrapper>

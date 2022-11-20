@@ -18,6 +18,9 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 100px;
+  padding-left: 20%;
+  padding-right: 20%;
 `;
 
 const StyledParagraph = styled.p`
@@ -62,7 +65,7 @@ const BrandIdentity = () => {
   return (
     <StyledWrapper>
       <Image src={BrandIdentityImg} alt='Brand identity design' width={128} height={128} />
-      <TextTitle>BRAND IDENTITY DESIGN</TextTitle>
+      <TextTitle>Brand identity design</TextTitle>
       <StyledParagraph>
         Stop. We don&apos;t make &quot;logos&quot; or &quot;quick&quot; works. We really love what we do, and what we do
         is brand identity construction. For us, if you want create just a logo, we think you are will be ok with

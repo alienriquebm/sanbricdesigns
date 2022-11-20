@@ -11,7 +11,7 @@ const StyledWrapper = styled.div`
 
 const StyledContentWrapper = styled.div`
   background-color: white;
-  padding: 100px 20% 0px 20%;
+  padding-top: 100px;
 `;
 
 const Layout = ({ children }: { children: React.ReactNode }) => {

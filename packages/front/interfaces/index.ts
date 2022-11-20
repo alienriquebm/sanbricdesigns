@@ -5,3 +5,9 @@ export interface ProcessStep {
   description: string;
   image: StaticImageData;
 }
+
+export interface Service {
+  title: string;
+  description: string;
+  image: StaticImageData;
+}

@@ -16,7 +16,9 @@
     "react-image-gallery": "1.2.11",
     "styled-components": "^5.3.6",
     "@svgr/webpack": "^6.2.1",
-    "constate": "3.3.2"
+    "constate": "3.3.2",
+    "react-awesome-reveal": "4.1.0",
+    "@emotion/react": "11.10.5"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",

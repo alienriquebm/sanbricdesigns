@@ -16,6 +16,7 @@ const theme = {
     lightGray: '#F0F0F0',
     gray50: '#f8f9fa',
     gray100: '#F9F9FB',
+    gray200: '#f2f2f2',
     gray400: '#82868C',
   },
   fontSize: {

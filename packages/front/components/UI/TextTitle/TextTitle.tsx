@@ -7,6 +7,7 @@ const StyledTitle = styled.div`
   margin-top: 24px;
   margin-bottom: 24px;
   color: ${({ theme }) => theme.colors.primary500};
+  text-transform: uppercase;
 `;
 
 interface Props {
