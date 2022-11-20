@@ -24,7 +24,7 @@ const StyledTextWrapper = styled.div<InnerProps>`
   order: ${({ isEvenNumber }) => (isEvenNumber ? 2 : 'initial')};
 `;
 const StyledDescription = styled.div<InnerProps>`
-  font-size: 14px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.gray400};
   text-align: ${({ isEvenNumber }) => (isEvenNumber ? 'right' : 'initial')};
 `;
