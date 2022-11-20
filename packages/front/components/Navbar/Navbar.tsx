@@ -11,7 +11,7 @@ const StyledNavbarWrapper = styled.div`
   padding: 12px;
   position: fixed;
   width: 100%;
-  background: white;
+  background: ${({ theme }) => theme.colors.gray50};
   z-index: 1;
 `;
 

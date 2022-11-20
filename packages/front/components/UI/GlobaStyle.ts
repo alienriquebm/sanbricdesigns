@@ -102,6 +102,7 @@ const reset = css`
     color: #002033;
     text-decoration: none;
     box-sizing: border-box;
+    line-height: 1.5;
   }
   /* HTML5 display-role reset for older browsers */
   article,

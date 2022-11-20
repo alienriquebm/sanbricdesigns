@@ -14,6 +14,7 @@ const theme = {
     primary200: '#EAF2C4',
     primary100: '#F8FBEB',
     lightGray: '#F0F0F0',
+    gray50: '#f8f9fa',
     gray100: '#F9F9FB',
     gray400: '#82868C',
   },
