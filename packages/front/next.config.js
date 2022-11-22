@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ['scontent.cdninstagram.com', 'video.cdninstagram.com'],
+  },
   compiler: {
     // Enables the styled-components SWC transform
     styledComponents: true,

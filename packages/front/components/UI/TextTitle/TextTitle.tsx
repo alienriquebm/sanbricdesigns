@@ -1,12 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledTitle = styled.div`
+interface TitleProps {
+  variant?: 'dark' | 'light';
+}
+
+const StyledTitle = styled.div<TitleProps>`
   font-size: 32px;
   font-weight: bold;
   margin-top: 24px;
   margin-bottom: 24px;
-  color: ${({ theme }) => theme.colors.primary500};
+  color: ${({ theme, variant }) => (variant === 'dark' ? 'white' : theme.colors.primary500)};
   text-transform: uppercase;
 `;
 
@@ -14,8 +18,8 @@ interface Props {
   children: React.ReactNode;
 }
 
-const TextTitle = ({ children }: Props) => {
-  return <StyledTitle>{children}</StyledTitle>;
+const TextTitle = ({ children, variant = 'light' }: Props & TitleProps) => {
+  return <StyledTitle variant={variant}>{children}</StyledTitle>;
 };
 
 export default TextTitle;

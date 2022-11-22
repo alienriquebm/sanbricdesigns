@@ -49,5 +49,10 @@ module.exports = {
     '@typescript-eslint/no-unsafe-argument': 'warn',
     'no-param-reassign': 'off',
     'import/no-extraneous-dependencies': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off', // TODO: Turn on when typings are updated
+    '@typescript-eslint/no-unsafe-member-access': 'off', // TODO: Turn on when typings are updated
+    '@typescript-eslint/no-unsafe-call': 'off', // TODO: Turn on when typings are updated
+    '@typescript-eslint/no-unsafe-return': 'off', // TODO: Turn on when typings are updated
+    '@typescript-eslint/no-unsafe-argument': 'off', // TODO: Turn on when typings are updated,
   },
 };

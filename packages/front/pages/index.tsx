@@ -2,29 +2,27 @@ import Layout from '@components/Layout';
 import BrandIdentity from '@components/IndexPage/BrandIdentity';
 import OtherServices from '@components/IndexPage/OtherServices';
 import InstagramProfile from '@components/IndexPage/InstagramProfile';
-import axios from 'axios';
+import { getInstagramProfile, GET_INSTAGRAM_PROFILE } from 'hooks/api/useGetInstagramProfile';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 
-interface Props {
-  instagramData: any;
-}
-
-export default function Home({ instagramData }: Props) {
+export default function Home() {
   return (
     <Layout>
       <BrandIdentity />
       <OtherServices />
-      <InstagramProfile instagramData={instagramData} />
+      <InstagramProfile />
     </Layout>
   );
 }
 
-export const getStaticProps = async () => {
-  const response = await axios.get(
-    `https://graph.instagram.com/me/media?fields=id,caption,media_url&access_token=${process.env.INSTAGRAM_TOKEN || ''}`
-  );
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery([GET_INSTAGRAM_PROFILE], () => getInstagramProfile());
+
   return {
     props: {
-      instagramData: response.data,
+      dehydratedState: dehydrate(queryClient),
     },
   };
-};
+}

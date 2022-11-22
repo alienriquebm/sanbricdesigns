@@ -29,7 +29,7 @@ const StyledServiceCardWrapper = styled.div`
   width: 100%;
   margin-top: 64px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(244px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 32px;
 `;
 
