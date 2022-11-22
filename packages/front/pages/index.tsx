@@ -15,10 +15,10 @@ export default function Home() {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery([GET_INSTAGRAM_PROFILE], () => getInstagramProfile());
+  await queryClient.prefetchQuery([GET_INSTAGRAM_PROFILE], getInstagramProfile);
 
   return {
     props: {
